@@ -17,7 +17,7 @@ public class Book {
 	private String isbn;
 
 	@NotNull
-	private float price;
+	private double price;
 
 	public Book() {
 		this.title = "title";
@@ -67,11 +67,11 @@ public class Book {
 		this.isbn = isbn;
 	}
 
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
