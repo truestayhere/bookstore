@@ -2,6 +2,8 @@ package com.example.bookstore.model;
 
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,8 +31,9 @@ public class Book {
 	private double price;
 	
 	@ManyToOne
-		@JoinColumn(name = "categoryid")
-		private Category category;
+	@JoinColumn(name = "categoryid")
+	@JsonManagedReference
+	private Category category;
 	 
 
 	public Book() {}

@@ -1,15 +1,21 @@
 package com.example.bookstore.web;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.BasePathAwareController;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.bookstore.model.Book;
 import com.example.bookstore.model.BookRepository;
 import com.example.bookstore.model.CategoryRepository;
+
 
 
 // GitHub URL: https://github.com/truestayhere/bookstore
@@ -53,4 +59,14 @@ public class BookController {
     	model.addAttribute("categories", crepository.findAll());
         return "editbook";
     }     
+    
+	@RequestMapping(value = "${spring.data.rest.basePath}/books", method = RequestMethod.GET)
+	public @ResponseBody List<Book> bookListRest() {
+		return (List<Book>) brepository.findAll();
+	}
+	
+    @RequestMapping(value="${spring.data.rest.basePath}/book/{id}", method = RequestMethod.GET)
+    public @ResponseBody Optional<Book> findStudentRest(@PathVariable("id") Long bookId) {	
+    	return brepository.findById(bookId);
+    }      
 }
